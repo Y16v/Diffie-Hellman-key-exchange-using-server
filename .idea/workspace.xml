@@ -247,8 +247,8 @@
     </configuration>
     <list>
       <item itemvalue="Python.client" />
-      <item itemvalue="Python.server" />
       <item itemvalue="Python.httpServer" />
+      <item itemvalue="Python.server" />
     </list>
     <recent_temporary>
       <list>
