@@ -18,7 +18,7 @@ class Server:
             print("Exception:", ex.args[0])
             import sys
             sys.exit(1)
-        self._waiting_connection()
+        self._waiting_for_connection()
 
     def _generate_status_line(self, code):
         if code == 200:
@@ -84,26 +84,29 @@ class Server:
 
         return response_header
 
-    def _waiting_connection(self):
+    def _waiting_for_connection(self):
         while True:
-            self.socket.listen(5)
-            conn, adr = self.socket.accept()
-            print("Connecting to adr:", adr)
-
-            data = conn.recv(4096)
+            self.socket.listen(1)
+            connection, address = self.socket.accept()
+            # print("Connecting to adr:", adr)
+            data = connection.recv(4096)
             request = data.decode()
-            request_method, request_uri, *request = request.split()
-            file_requested = request_uri.split("?")[0]
-            if request_method == "GET" or request_method == "HEAD":
-                response = self._get_method_response(request_method, file_requested)
+            print(request)
+            try:
+                request_method, request_uri, *request = request.split()
+                file_requested = request_uri.split("?")[0]
+                if request_method == "GET" or request_method == "HEAD":
+                    response = self._get_method_response(request_method, file_requested)
 
-            elif request_method == "POST":
-                response = self._post_method_request()
-            else:
-                response = self._generate_header(437)
-            conn.send(response)
+                elif request_method == "POST":
+                    response = self._post_method_request()
+                else:
+                    response = self._generate_header(437)
+                connection.send(response)
+            except ValueError as exception:
+                print("Value Error", exception)
 
-            conn.close()
+            connection.close()
 
 
 server = Server(8080)
