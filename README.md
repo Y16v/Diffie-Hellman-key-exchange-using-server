@@ -6,8 +6,9 @@ interact with each other and generates cryptographic keys for encrypting message
 # Usage
 In terminal type:
 
-python -c 'import server; server.server()'
-python -c 'import client; client.client()'
+python -c 'import server; server.server()' # run server
+
+python -c 'import client; client.client()' # run client
 
 # Advantage Diffie-Hellman over RSA
 Advantage of DH over RSA for generating ephemeral keys: producing a new DH key pair is extremely fast
