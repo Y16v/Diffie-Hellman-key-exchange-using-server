@@ -1,9 +1,11 @@
 # Diffie-Hellman-key-exchange-using-server
-Diffie-Hellman-key-exchange-using-server is python built in socket project which shows how server and client interact with each 
-other and generates cryptographic keys for encrypting messages using Ceaser Cipher.
+Diffie-Hellman-key-exchange-using-server is python built in socket project which shows how server and client
+
+interact with each other and generates cryptographic keys for encrypting messages using Ceaser Cipher.
 
 # Usage
 In terminal type:
+
 python -c 'import server; server.server()'
 python -c 'import client; client.client()'
 
